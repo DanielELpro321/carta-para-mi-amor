@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -22,6 +23,13 @@
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        .titulo {
+            color: #d32f2f;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .sobre {
@@ -70,6 +78,12 @@
             margin-bottom: 10px;
         }
 
+        .hoja h2 {
+            color: #d32f2f;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
         .hoja p {
             color: #333;
             font-size: 14px;
@@ -89,7 +103,7 @@
             color: red;
             font-size: 24px;
             opacity: 0.8;
-            animation: flotar 4s linear infinite;
+            animation: flotar 5s linear infinite;
         }
 
         @keyframes flotar {
@@ -98,13 +112,14 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-200px) translateX(calc(-50px + 100px * var(--random-x)));
-                opacity: 0;
+                transform: translateY(-100vh) translateX(calc(-50px + 100px * var(--random-x)));
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
+    <h1 class="titulo">Carta para mi amor</h1>
     <div class="sobre" onclick="abrirCarta()">
         💌
     </div>
@@ -121,29 +136,23 @@
         function abrirCarta() {
             document.body.classList.toggle('abierto');
             if (document.body.classList.contains('abierto')) {
-                generarCorazones();
+                setInterval(generarCorazones, 300);
             }
         }
 
         function generarCorazones() {
-            for (let i = 0; i < 20; i++) {
-                let corazon = document.createElement('div');
-                corazon.innerHTML = '❤️';
-                corazon.classList.add('corazon');
-                document.body.appendChild(corazon);
-                
-                let xPos = Math.random() * window.innerWidth;
-                let yPos = window.innerHeight;
-                corazon.style.left = `${xPos}px`;
-                corazon.style.top = `${yPos}px`;
-                corazon.style.fontSize = `${Math.random() * 20 + 20}px`;
-                corazon.style.setProperty('--random-x', Math.random());
-                corazon.style.animationDuration = `${Math.random() * 2 + 2}s`;
-                
-                setTimeout(() => {
-                    corazon.remove();
-                }, 4000);
-            }
+            let corazon = document.createElement('div');
+            corazon.innerHTML = '❤️';
+            corazon.classList.add('corazon');
+            document.body.appendChild(corazon);
+            
+            let xPos = Math.random() * window.innerWidth;
+            let yPos = window.innerHeight;
+            corazon.style.left = `${xPos}px`;
+            corazon.style.top = `${yPos}px`;
+            corazon.style.fontSize = `${Math.random() * 20 + 20}px`;
+            corazon.style.setProperty('--random-x', Math.random());
+            corazon.style.animationDuration = `${Math.random() * 3 + 3}s`;
         }
     </script>
 </body>
